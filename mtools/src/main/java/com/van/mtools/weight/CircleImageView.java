@@ -254,19 +254,19 @@ public class CircleImageView extends ImageView {
         int heightSpecSize = MeasureSpec.getSize(heightMeasureSpec);
 
         //当宽/高为wrap_content即对用AT_MOST的时候，设置一个默认值给系统
-        if (withSpecSize != 0 && heightSpecSize != 0) {
-            defSize = withSpecSize > heightSpecSize ? heightSpecSize : withSpecSize;
-            setMeasuredDimension(defSize, defSize);
-        } else {
-            setMeasuredDimension(defWith, defHeight);
-        }
-//        if (withSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST) {
-//            setMeasuredDimension(defWith, defHeight);
-//        } else if (withSpecMode == MeasureSpec.AT_MOST) {
-//            setMeasuredDimension(defWith, heightSpecSize);
+//        if (withSpecSize != 0 && heightSpecSize != 0) {
+//            defSize = withSpecSize > heightSpecSize ? heightSpecSize : withSpecSize;
+//            setMeasuredDimension(defSize, defSize);
 //        } else {
-//            setMeasuredDimension(withSpecSize, defHeight);
+//            setMeasuredDimension(defWith, defHeight);
 //        }
+        if (withSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(defWith, defHeight);
+        } else if (withSpecMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(defWith, heightSpecSize);
+        } else {
+            setMeasuredDimension(withSpecSize, defHeight);
+        }
 
     }
 }
